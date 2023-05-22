@@ -1,6 +1,7 @@
 <script>
 import CardList from "./components/CardList.vue";
 import axios from "axios";
+import CardCounter from "./components/CardCounter.vue";
 import { store } from "./store";
 
 export default {
@@ -11,6 +12,7 @@ export default {
   },
   components: {
     CardList,
+    CardCounter,
   },
   created() {
     axios
@@ -22,6 +24,7 @@ export default {
 
 <template>
   <div class="container">
+    <CardCounter></CardCounter>
     <CardList></CardList>
   </div>
 </template>
