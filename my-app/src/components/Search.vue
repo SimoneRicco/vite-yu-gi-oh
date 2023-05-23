@@ -6,17 +6,22 @@ export default {
       store,
     };
   },
+  methods: {
+    search(event) {
+      this.$emit("loadCards", event.target.value);
+    },
+  },
 };
 </script>
 
 <template>
-  <select name="" id="">
+  <select v-model="store.archetype" @change="search">
     <option
       v-for="(item, index) in store.archetypeList"
       :key="index"
-      :value="item.data.archetype_name"
+      :value="item.archetype_name"
     >
-      {{ item.data.archetype_name }}
+      {{ item.archetype_name }}
     </option>
   </select>
 </template>

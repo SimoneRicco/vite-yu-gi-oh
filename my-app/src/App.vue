@@ -17,20 +17,30 @@ export default {
     Search,
   },
   created() {
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
-      .then((response) => (this.store.characterList = response.data.data));
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
-      .then((response) => (this.store.archetypeList = response.data));
-    console.log(this.store.archetypeList);
+    this.changeCards();
+    this.createArchtypes();
+  },
+  methods: {
+    changeCards() {
+      axios
+        .get(
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0&archetype=" +
+            store.archetype
+        )
+        .then((response) => (this.store.characterList = response.data.data));
+    },
+    createArchtypes() {
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+        .then((response) => (this.store.archetypeList = response.data));
+    },
   },
 };
 </script>
 
 <template>
   <div class="big-container">
-    <Search></Search>
+    <Search @loadCards="changeCards"></Search>
     <div class="container">
       <CardCounter></CardCounter>
       <CardList></CardList>
