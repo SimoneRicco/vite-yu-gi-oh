@@ -16,6 +16,7 @@ export default {
 
 <template>
   <select v-model="store.archetype" @change="search">
+    <option value="">Choose archetype</option>
     <option
       v-for="(item, index) in store.archetypeList"
       :key="index"

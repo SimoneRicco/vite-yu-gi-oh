@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       store,
+      arch: "&archetype=",
     };
   },
   components: {
@@ -21,11 +22,17 @@ export default {
     this.createArchtypes();
   },
   methods: {
-    changeCards() {
+    changeCards(link) {
+      let archLink = this.arch + link;
+      if (link != null && link != "") {
+        archLink = this.arch + link;
+      } else {
+        archLink = "";
+      }
       axios
         .get(
-          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0&archetype=" +
-            store.archetype
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0" +
+            archLink
         )
         .then((response) => (this.store.characterList = response.data.data));
     },
@@ -40,7 +47,7 @@ export default {
 
 <template>
   <div class="big-container">
-    <Search @loadCards="changeCards"></Search>
+    <Search @loadCards="changeCards(store.archetype)"></Search>
     <div class="container">
       <CardCounter></CardCounter>
       <CardList></CardList>
