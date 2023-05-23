@@ -1,9 +1,16 @@
 <script>
-export default {};
+import { store } from "../store";
+export default {
+  data() {
+    return {
+      store,
+    };
+  },
+};
 </script>
 
 <template>
-  <div class="count-bar">Found 39 Cards</div>
+  <div class="count-bar">Found {{ store.characterList.length }} Cards</div>
 </template>
 
 <style lang="scss" scoped>
