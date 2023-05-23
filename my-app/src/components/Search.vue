@@ -8,7 +8,7 @@ export default {
   },
   methods: {
     search(event) {
-      this.$emit("loadCards", event.target.value);
+      this.$emit("loadCards");
     },
   },
 };
